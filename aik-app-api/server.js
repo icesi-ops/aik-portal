@@ -35,10 +35,10 @@ app.get('/buycars', function(req, res){
     {title : 'Stringer', release : '2015', score: 7, price: '10.000.000', description: 'Modern Car 3.0CC'},
     {title : 'Ant-Man', release: '2015', score: 8, price: '70.000.000', description : 'Modern Car 1.0CC'},
     {title : 'Rio Jatchbash', release : '2014', score: 10, price: '50.000.000', description : 'Modern Car 1.0CC'},
-  ]
+  ];
 
   res.json(vehicles);
-})
+});
 
 //app.get('/', function(req, res, next) {   
     //now you can call the get-driver, passing a callback function
@@ -62,7 +62,7 @@ app.get('/vehicles', function(req, res){
   ];
 
   res.json(vehicles);
-})
+});
 
 // Implement the publications API endpoint
 app.get('/support', function(req, res){
@@ -76,7 +76,7 @@ app.get('/support', function(req, res){
   ];
 
   res.json(support);
-})
+});
 
 // Implement the pending reviews API endpoint
 app.get('/pending', function(req, res){
@@ -84,9 +84,10 @@ app.get('/pending', function(req, res){
     {title : 'Superman: Homecoming', release: '2017', score: 10, price: 'Chris Harris', publication: 'International Movie Critic'},
     {title : 'Wonder Woman', release: '2017', score: 8, reviewer: 'Martin Thomas', publication : 'TheOne'},
     {title : 'Doctor Strange', release : '2016', score: 7, reviewer: 'Anthony Miller', publication : 'ComicBookHero.com'}
-  ]
+  ];
+
   res.json(pending);
-})
+});
 console.log("server listening through port: "+process.env.PORT);
 // Launch our API Server and have it listen on port 3000.
 app.listen(process.env.PORT || 3000);
