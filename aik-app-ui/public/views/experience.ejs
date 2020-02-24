@@ -14,18 +14,18 @@
 <div class="container">
   <div class="jumbotron text-center">
     <h1><span class="glyphicon glyphicon-tower"></span></h1>
-    <h2>Our Support</h2>
+    <h2>AIK Experience</h2>
   </div>
 
   <div class="row">
-  <% support.forEach(function(publication, index) { %>
+  <% experience.forEach(function(pending, index) { %>
     <div class="col-sm-4">
       <div class="panel">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= support.name %></h3>
+          <h3 class="panel-title"><%= experience.name %></h3>
         </div>
         <div class="panel-body text-center">
-          <h1><span class="glyphicon <%= support.avatar %>"></span></h1>
+          <h1><span class="glyphicon <%= experience.avatar %>"></span></h1>
         </div>
       </div>
     </div>
