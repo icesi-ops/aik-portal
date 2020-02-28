@@ -12,14 +12,13 @@ const query = {
 
 describe('First Web Tests', () => {
 
-  
   it('Consume GET Service', async () => {
     const response = await agent.get('http://localhost:3030/experience');
   
     expect(response.status).to.equal(statusCode.OK);
    
   });
-  
+
   it('Consume GET Service with headers parameters', async () => {
     const response = await agent.get('http://localhost:3030/experience');
     
@@ -32,7 +31,7 @@ describe('First Web Tests', () => {
     expect(response.headers).to.have.property('connection');
 
   });
-  
+
   it('Consume GET Service with body parameters', async () => {
     const response = await agent.get('http://localhost:3030/experience');
     
