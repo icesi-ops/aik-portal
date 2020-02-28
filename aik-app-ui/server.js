@@ -3,7 +3,7 @@
 // Declare our dependencies
 var express = require('express');
 var request = require('superagent');
-var backendHost = process.env.BACK_HOST || '192.168.244.128';
+var localhost = process.env.BACK_HOST || '0.0.0.0';
 // Create our express app
 var app = express();
 
@@ -25,7 +25,7 @@ app.get('/', function(req, res){
 // Once the request is sent out, our API will validate that the access_token has the right scope to request the /movies resource and if it does, will return the movie data. We’ll take this movie data, and pass it alongside our movies.ejs template for rendering
 app.get('/buycars', function(req, res){
   request
-    .get('http://'+backendHost+':3000/buycars')
+    .get('http://'+localhost+':3000/buycars')
     .end(function(err, data) {
       if(data.status == 403){
         res.send(403, '403 Forbidden');
@@ -40,7 +40,7 @@ app.get('/buycars', function(req, res){
 // The key difference on the authors route, is that for our client, we’re naming the route /authors, but our API endpoint is /reviewers. Our route on the client does not have to match the API endpoint route.
 app.get('/vehicles', function(req, res){
   request
-    .get('http://'+backendHost+':3000/vehicles')
+    .get('http://'+localhost+':3000/vehicles')
     .set('Authorization', 'Bearer ' + req.access_token)
     .end(function(err, data) {
       if(data.status == 403){
@@ -54,7 +54,7 @@ app.get('/vehicles', function(req, res){
 
 app.get('/support', function(req, res){
   request
-    .get('http://'+backendHost+':3000/support')
+    .get('http://'+localhost+':3000/support')
     .end(function(err, data) {
       if(data.status == 403){
         res.send(403, '403 Forbidden');
@@ -66,9 +66,9 @@ app.get('/support', function(req, res){
 })
 
 // We’ve added the pending route, but calling this route from the MovieAnalyst Website will always result in a 403 Forbidden error as this client does not have the admin scope required to get the data.
-app.get('/pending', function(req, res){
+app.get('/experience', function(req, res){
   request
-    .get('http://'+backendHost+':3000/pending')
+    .get('http://'+localhost+':3000/experience')
     .end(function(err, data) {
       if(data.status == 403){
         res.send(403, '403 Forbidden');

@@ -23,7 +23,7 @@ var app = express();
 app.get('/', function(req, res){
   var response = [{response : 'hello'}, {code : '200'}]
   res.json(response);
-})
+});
 
 // Implement the movies API endpoint
 app.get('/buycars', function(req, res){
@@ -78,8 +78,8 @@ app.get('/support', function(req, res){
   res.json(support);
 });
 
-// Implement the pending reviews API endpoint
-app.get('/pending', function(req, res){
+// Implement content
+app.get('/experience', function(req, res){
   var pending = [
     {title : 'Superman: Homecoming', release: '2017', score: 10, reviewer: 'Chris Harris', publication: 'International Movie Critic'},
     {title : 'Wonder Woman', release: '2017', score: 8, reviewer: 'Martin Thomas', publication : 'TheOne'},

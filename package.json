@@ -1,0 +1,27 @@
+{
+  "name": "2",
+  "version": "1.0.0",
+  "description": "This is a test",
+  "main": "index.js",
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha"
+    
+  },
+  "keywords": [
+    "web-testing",
+    "dojo",
+    "practice"
+  ],
+  "author": "John Sebastian Urbano Lenis john.urbano@correo.icesi.edu.co",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "http-status-codes": "^1.4.0",
+    "mocha": "^7.1.0"
+  },
+  "dependencies": {
+    "superagent": "^5.2.2",
+    "superagent-promise": "^1.1.0"
+  }
+ 
+}
