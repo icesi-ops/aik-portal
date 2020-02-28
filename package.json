@@ -4,8 +4,7 @@
   "description": "This is a test",
   "main": "index.js",
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha"
-    
+    "test": "node ./node_modules/mocha/bin/mocha -t 5000 --reporter mochawesome --reporter-options reportDir=report,reportFilename=ApiTesting"
   },
   "keywords": [
     "web-testing",
@@ -17,11 +16,11 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "http-status-codes": "^1.4.0",
-    "mocha": "^7.1.0"
+    "mocha": "^7.1.0",
+    "mochawesome": "^5.0.0"
   },
   "dependencies": {
     "superagent": "^5.2.2",
     "superagent-promise": "^1.1.0"
   }
- 
 }
