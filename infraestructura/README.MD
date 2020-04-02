@@ -9,4 +9,4 @@ Link: https://trello.com/c/1L3rs7ei/17-story-16-dise%C3%B1o-de-las-m%C3%A1quinas
 
 Para este primer sprint se decidio utilizar vagrant para crear una infraestructura pequeña que permitiera tener y desplegar el codigo de una manera distribuida. A continuación se muestra el diagrama que se implemento.  
 
-![imagen1](https://raw.githubusercontent.com/andres1397/aik-portal/Feature-Infraestructura-Dise%C3%B1oMaquinasVirtuales/images/Dise%C3%B1oInfraestructuraStory%2316.png)
+![imagen1](/infraestructura/images/DiseñoInfraestructuraStory#16.png)
