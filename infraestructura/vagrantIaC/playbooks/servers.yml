@@ -1,14 +1,23 @@
-- hosts: frontend
+---
+- hosts: all
   become: yes
   become_user: root
   become_method: sudo
   tasks:
-    - name: Install 
-
-
-- hosts: backend
-  become: yes
-  become_user: root
-  become_method: sudo
-  tasks:
-    - name: Install
+  - name: install git
+    apt:
+      name: git
+      state: present
+  - name: install gpg key for nodejs LTS
+    apt-key:
+      url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+      state: present
+  - name: install nodjs LTS repo
+    apt_repository:
+      repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
+      state: present
+      update_caache: yes
+  - name: install nodejs
+    apt:
+      name: nodejs
+      state: present
