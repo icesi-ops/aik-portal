@@ -1,0 +1,14 @@
+- hosts: frontend
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Install 
+
+
+- hosts: backend
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: Install
