@@ -3,21 +3,58 @@
   become: yes
   become_user: root
   become_method: sudo
+  vars_files:
+    - ./vars/install_nodejs_vars.yml
+
   tasks:
-  - name: install git
-    apt:
-      name: git
-      state: present
-  - name: install gpg key for nodejs LTS
-    apt-key:
-      url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
-      state: present
-  - name: install nodjs LTS repo
-    apt_repository:
-      repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
-      state: present
-      update_caache: yes
-  - name: install nodejs
-    apt:
-      name: nodejs
-      state: present
+    - name: install git
+      apt:
+        name: git
+        state: present
+
+    - name: install gpg key for nodejs LTS
+      apt_key:
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+        state: present
+    
+    - name: install nodjs LTS repo
+      apt_repository:
+        repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
+        state: present
+        update_cache: yes
+    
+    - name: install nodejs
+      apt:
+        name: nodejs
+        state: present
+
+    - name: clone aik-repository
+      git:
+        repo: 'https://github.com/andres1397/aik-portal.git'
+        dest: /home/app
+        #clone: yes
+        update: no
+
+- hosts: frontend
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks: 
+    - name: install npm dependencies
+      npm:
+        path: /home/app/aik-app-ui
+
+    - name: Deploy and start de frontend server
+      shell: node /home/app/aik-app-ui/server.js &> /dev/null
+
+- hosts: backend
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks: 
+    - name: install npm dependencies
+      npm:
+        path: /home/app/aik-app-api
+
+    - name: Deploy and start de frontend server
+      shell: node /home/app/aik-app-api/server.js &> /dev/null
