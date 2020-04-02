@@ -13,7 +13,7 @@ Para este primer sprint se decidio utilizar vagrant para crear una infraestructu
 
 Para el aprovisionamiento se obto por usar Ansible y el diseño es el siguiente.  
 
-![imagen2]()
+![imagen2](https://raw.githubusercontent.com/andres1397/aik-portal/Feature-FrontBackInfraIntegr-DespliegueInfraestructura/infraestructura/images/Dise%C3%B1oInfraestructurayAprovisionamientoStory%2317.png)
 
 
 Para el despliegue es necesario realizar un  
