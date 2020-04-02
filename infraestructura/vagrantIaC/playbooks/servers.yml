@@ -45,7 +45,8 @@
         path: /home/app/aik-app-ui
 
     - name: Deploy and start de frontend server
-      shell: node /home/app/aik-app-ui/server.js &> /dev/null
+      shell: tmux new-session -d -s "front" node /home/app/aik-app-ui/server.js
+      #shell: node /home/app/aik-app-ui/server.js &> /dev/null
 
 - hosts: backend
   become: yes
@@ -57,4 +58,5 @@
         path: /home/app/aik-app-api
 
     - name: Deploy and start de frontend server
-      shell: node /home/app/aik-app-api/server.js &> /dev/null
+      shell: tmux new-session -d -s "back" node /home/app/aik-app-api/server.js
+      #shell: node /home/app/aik-app-api/server.js &> /dev/null
