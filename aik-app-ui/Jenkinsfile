@@ -22,9 +22,9 @@ node {
     sh "createrepo ~/repo/"
     sh "aws s3 sync ~/repo s3://artifacts-automatizacion/ --region us-east-1 --delete"
   stage "Check YUM repo"
-    sh "yum clean all"
-    sh "yum update -y"
-    sh "yum info aik-app-\$(git rev-parse --short HEAD)"
+    sh "sudo yum clean all"
+    sh "sudo yum update -y"
+    sh "sudo yum info aik-app-\$(git rev-parse --short HEAD)"
   stage "Trigger downstream"
     echo 'parametro'
  
