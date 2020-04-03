@@ -4,12 +4,12 @@ node {
 
     step([$class: 'WsCleanup'])
 
-    stage "CHeckout Git repo"
+    stage "Checkout Git repo"
         checkout scm
 
     stage "Run test"
         sh "docker run -v \$(pwd)/aik-app-ui:/data --rm usemtech/nodejs-mocha npm install"
-        sh "docker run -v \$(pwd)/aik-app-ui:/data --rm usemtech/nodejs-mocha npm chai chai-http"
+        sh "docker run -v \$(pwd)/aik-app-ui:/data --rm usemtech/nodejs-mocha npm install chai chai-http"
         sh "docker run -v \$(pwd)/aik-app-ui:/data --rm usemtech/nodejs-mocha npm test"
     stage "Build RPM"
         sh "[ -d ./rpm] || mkdir ./rpm"
