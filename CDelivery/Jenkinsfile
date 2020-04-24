@@ -44,8 +44,11 @@ node {
 
     sh "aws ec2 create-tags --resources ${instanceId} \
         --region us-east-1 \
-        --tags Key=Name,Value=\"Jenkins (aik-app-$APP_VERSION)\" Key=CreatedBy,Value=Jenkins \
-       "
+        --tags Key=Name,Value=\"Jenkins (aik-app-$APP_VERSION)\" Key=CreatedBy,Value=Jenkins \"
+    
+    echo "Waiting for the instance to come into service"
+    aws ec2 wait instance-running --instance-ids ${instanceId}
+    sleep 60
 
     echo "Registering with ELB"
     def elbId = "alb-aik"
@@ -56,8 +59,6 @@ node {
     
    
 
-    echo "Waiting for the instance to come into service"
-    sh "while [ \"x\$(aws elb describe-instance-health --region us-east-1 --load-balancer-name ${elbId} --instances ${instanceId} | jq .InstanceStates[].State | tr -d '\"')\" != \"xInService\" ]; do : ; sleep 60; done"
 
 
   stage "Run AB test"
