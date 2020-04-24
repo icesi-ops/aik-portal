@@ -14,7 +14,7 @@ node {
 
   stage "Run Packer"
     sh "/opt/packer validate -var=\"appVersion=$APP_VERSION\" -var-file=CDelivery/packer/aik-app_vars.json CDelivery/packer/aik-app.json"
-    sh "/opt/packer build -machine-readable -var=\"appVersion=$APP_VERSION\" -var-file=packer/movie-app_vars.json packer/movie-app.json | tee packer/packer.log"
+    sh "/opt/packer build -machine-readable -var=\"appVersion=$APP_VERSION\" -var-file=CDelivery/packer/aik-app_vars.json CDelivery/packer/aik-app.json | tee packer/packer.log"
 
   stage "Deploy AMI"
 
