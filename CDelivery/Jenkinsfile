@@ -51,7 +51,7 @@ node {
     def elbId = "alb-aik"
     sh "aws elbv2 register-targets \
     --target-group-arn arn:aws:elasticloadbalancing:us-east-1:382356559478:targetgroup/alb-aik/8330c53354f19757 \
-    --targets Id=${instanceId}
+    --targets Id=${instanceId}"
     
    
 
