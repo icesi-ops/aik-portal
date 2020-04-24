@@ -16,7 +16,7 @@
       "instance_type": "t2.micro",
       "ssh_username": "{{user `sshUser`}}",
       "ami_name": "{{user `amiName`}}-{{timestamp}}",
-      //"iam_instance_profile": "{{user `instanceProfile`}}",
+      
       "subnet_id": "{{user `subnetId`}}",
       "vpc_id": "{{user `vpcId`}}",
       "user_data_file": "{{user `userDataFile`}}",
