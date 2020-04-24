@@ -26,7 +26,7 @@ node {
     def subnetId = "subnet-0886c90314d0a1c3e"
 
     sh "tail -n1 CDelivery/packer/packer.log"
-    sh "cat packer/packer.log"
+    sh "cat CDelivery/packer/packer.log"
     echo "Esto tiene packer.log \$(cat CDelivery/packer/packer.log)"
     echo "Launching an instance from ${amiId}"
     sh "aws ec2 run-instances \
