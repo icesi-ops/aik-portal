@@ -53,12 +53,7 @@ node {
     --target-group-arn arn:aws:elasticloadbalancing:us-east-1:382356559478:targetgroup/alb-aik/8330c53354f19757 \
     --targets Id=${instanceId}
     
-    #Register with classic ELB
-    #sh "aws elb register-instances-with-load-balancer \
-    #    --region us-east-1 \
-    #    --load-balancer-name ${elbId} \
-    #    --instances ${instanceId} \
-    #   "
+   
 
     echo "Waiting for the instance to come into service"
     sh "while [ \"x\$(aws elb describe-instance-health --region us-east-1 --load-balancer-name ${elbId} --instances ${instanceId} | jq .InstanceStates[].State | tr -d '\"')\" != \"xInService\" ]; do : ; sleep 60; done"
