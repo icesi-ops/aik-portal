@@ -18,16 +18,16 @@ node {
 
   stage "Deploy AMI"
 
-    string amiIdUnFormat = sh returnStdout: true, script:"tail -n1 packer/packer.log | awk '{printf \$NF}' "
+    string amiIdUnFormat = sh returnStdout: true, script:"tail -n1 CDelivery/packer/packer.log | awk '{printf \$NF}' "
     def amiId = amiIdUnFormat.replace("\\n","")
     def ec2Keypair = "devops"
     def secGroup = "sg-08599e13de23cc44c"
     def instanceType = "t2.micro"
     def subnetId = "subnet-0886c90314d0a1c3e"
 
-    sh "tail -n1 packer/packer.log"
+    sh "tail -n1 CDelivery/packer/packer.log"
     sh "cat packer/packer.log"
-    echo "Esto tiene packer.log \$(cat packer/packer.log)"
+    echo "Esto tiene packer.log \$(cat CDelivery/packer/packer.log)"
     echo "Launching an instance from ${amiId}"
     sh "aws ec2 run-instances \
         --region us-east-1 \
