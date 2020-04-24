@@ -16,5 +16,5 @@ install_npm_dependencies:
 
 run_aik_portal:
     cmd.run:
-      - name: "node /srv/app/aik-app-ui/server.js &" 
+      - name: "nohup node server.js > /dev/null 2>&1 &" 
 
