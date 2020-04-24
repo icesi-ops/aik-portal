@@ -3,7 +3,6 @@
       "srcAmiId": null,
       "amiName": null,
       "sshUser": null,
-      "instanceProfile": null,
       "subnetId": null,
       "vpcId": null,
       "userDataFile": null,
