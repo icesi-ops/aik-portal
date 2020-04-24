@@ -56,9 +56,6 @@ node {
     --region us-east-1 \
     --target-group-arn arn:aws:elasticloadbalancing:us-east-1:382356559478:targetgroup/alb-aik/8330c53354f19757 \
     --targets Id=${instanceId}"
-    
-   
-
 
 
   stage "Run AB test"
