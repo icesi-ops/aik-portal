@@ -14,22 +14,26 @@
 <div class="container">
   <div class="jumbotron text-center">
     <h1><span class="glyphicon glyphicon-tower"></span></h1>
-    <h2>Our Support</h2>
+    <h2>Your experience</h2>
   </div>
 
   <div class="row">
-  <% support.forEach(function(publication, index) { %>
-    <div class="col-sm-4">
-      <div class="panel">
-        <div class="panel-heading">
-          <h3 class="panel-title"><%= support.name %></h3>
-        </div>
-        <div class="panel-body text-center">
-          <h1><span class="glyphicon <%= support.avatar %>"></span></h1>
+    <% experience.forEach(function(experience, index) { %>
+      <div class="col-sm-4">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= experience.title %></h3>
+          </div>
+          
+          <div class="panel-footer small">
+            
+            <a href="/ class="btn btn-block btn-primary">GO</a>
+          </div>
+          
         </div>
       </div>
-    </div>
-  <% }) %>
+    <!-- We’ll also have to close our loop -->
+    <% }) %>
   </div>
 </div>
 
