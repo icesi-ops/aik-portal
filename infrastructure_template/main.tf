@@ -122,7 +122,9 @@ resource "aws_launch_configuration" "aik-lcfg" {
         sudo yum update -y
         sudo yum install -y git 
         #Clone salt repo
-        git clone https://github.com/icesi-ops/icesi-ops /srv/app
+        mkdir -p /srv/app
+        sudo chmod 777 /srv/app
+        git clone https://github.com/icesi-ops/aik-portal /srv/app
 
         #Install Salstack
         sudo yum install -y https://repo.saltstack.com/yum/redhat/salt-repo-latest.el7.noarch.rpm
