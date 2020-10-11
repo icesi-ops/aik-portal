@@ -102,6 +102,9 @@ resource "aws_autoscaling_group" "aik_autoscaling" {
   min_size             = 2
   max_size             = 2
   vpc_zone_identifier  = [aws_subnet.aik-subnet-public1.id, aws_subnet.aik-subnet-public2.id]
+  health_check_grace_period = 300
+  health_check_type         = "EC2"
+  target_group_arns         = ["${aws_lb_target_group.asg.arn}"]
 
   tag {
     key                 = "Name"
@@ -218,7 +221,7 @@ resource "aws_lb_target_group" "asg" {
     path                = "/"
     protocol            = "HTTP"
     matcher             = "200"
-    interval            = 15
+    interval            = 60
     timeout             = 3
     healthy_threshold   = 2
     unhealthy_threshold = 2
