@@ -4,27 +4,23 @@ provider "aws" {
 
 #VPC
 
-resource "aws_vpc" "aik-vpc" {
-  cidr_block = var.vpc_cidr
-
-  tags = {
-    Name = "automatizacion-est10-vpc"
-  }
+data "aws_vpc" "aik-vpc" {
+  id = "vpc-025ce59ecf7aed804"
 }
 
 #IGW
-resource "aws_internet_gateway" "aik-igw" {
-  vpc_id = aws_vpc.aik-vpc.id
+data "aws_internet_gateway" "aik-igw" {
+  internet_gateway_id = "igw-097d3d1e5513c7338"
 }
 
 #CRREATE PUBLIC ROUTE TABLE
 
 resource "aws_route_table" "rtb-public" {
-  vpc_id = aws_vpc.aik-vpc.id
+  vpc_id = data.aws_vpc.aik-vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.aik-igw.id
+    gateway_id = data.aws_internet_gateway.aik-igw.id
   }
 
   tags = {
@@ -36,7 +32,7 @@ resource "aws_route_table" "rtb-public" {
 
 resource "aws_subnet" "aik-subnet-public1" {
 
-  vpc_id                  = aws_vpc.aik-vpc.id
+  vpc_id                  = data.aws_vpc.aik-vpc.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 1)
   availability_zone       = element(split(",", var.aws_availability_zones), 0)
   map_public_ip_on_launch = true
@@ -49,7 +45,7 @@ resource "aws_subnet" "aik-subnet-public1" {
 
 resource "aws_subnet" "aik-subnet-public2" {
 
-  vpc_id                  = aws_vpc.aik-vpc.id
+  vpc_id                  = data.aws_vpc.aik-vpc.id
   cidr_block              = cidrsubnet(var.vpc_cidr, 8, 3)
   availability_zone       = element(split(",", var.aws_availability_zones), 1)
   map_public_ip_on_launch = true
@@ -72,7 +68,7 @@ resource "aws_security_group" "aik-sg-portal" {
 
   name        = "frontend"
   description = "Sf for allow traffic to portal frontend"
-  vpc_id      = aws_vpc.aik-vpc.id
+  vpc_id      = data.aws_vpc.aik-vpc.id
 
   ingress {
     from_port  = "3030"
@@ -146,7 +142,7 @@ resource "aws_launch_configuration" "aik-lcfg" {
 resource "aws_security_group" "sg_lb" {
 
   name   = var.alb_security_group_name
-  vpc_id = aws_vpc.aik-vpc.id
+  vpc_id = data.aws_vpc.aik-vpc.id
 
   # Allow inbound HTTP requests
   ingress {
@@ -215,7 +211,7 @@ resource "aws_lb_target_group" "asg" {
   name     = var.alb_name
   port     = "${var.server_port}"
   protocol = "HTTP"
-  vpc_id   = "${aws_vpc.aik-vpc.id}"
+  vpc_id   = "${data.aws_vpc.aik-vpc.id}"
 
   health_check {
     path                = "/"
