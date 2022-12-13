@@ -19,7 +19,7 @@
   "homepage": "https://github.com/icesi-ops/aik-portal#readme",
   "dependencies": {
     "auth0-api-jwt-rsa-validation": "0.0.1",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "express-jwt": "^6.0.0",
     "mysql": "^2.14.1"
   },
